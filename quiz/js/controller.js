@@ -4,7 +4,6 @@ var quiz_ref;
 var quiz_testtype;
 
 var quiz_questions = new Array();
-var number_of_questions;
 
 $(document).ready($.getJSON('json/quiz.json', function (data) {
 	quiz_title = data.title;
@@ -19,27 +18,49 @@ $(document).ready($.getJSON('json/quiz.json', function (data) {
 			quiz_questions[i][j + 1] = data.questions[i].options[j];
 		}
 	}
-	number_of_questions = quiz_questions.length;
 
-	$('title').text(quiz_title);
 	print_quiz();
 }))
 
 function print_quiz() {
+	$('title').text(quiz_title);
 	$('#quiz_title').text(quiz_title);
 	$('#quiz_desc').text(quiz_desc);
 	$('#quiz_ref').text(quiz_ref);
-	$('#quiz_ref').append('<br/><br/>');
-	for (i = 0; i < number_of_questions; i++) {
-		$('#quiz_questions').append('<div>');
-		$('#quiz_questions').append(quiz_questions[i][0]);
-		$('#quiz_questions').append('<p>');
-		for (j = 1; j < quiz_questions[i].length; j++) {
-			$('#quiz_questions').append(
-				'<input type="checkbox" name="option"' + j + ' value="a' + j + '">' + quiz_questions[i][j] + '<br/>');
+
+	var input_type;
+	switch (quiz_testtype) {
+		case 'multi':
+			input_type = 'checkbox';
+			break;
+		case 'single':
+			input_type = 'radio';
+			break;
+		case 'esse':
+			input_type = 'text';
+			break;
+		default:
+			input_type = 'undefined';
+			break;
+	}
+
+	if (input_type == 'checkbox' || input_type == 'radio') {
+		for (i = 0; i < quiz_questions.length; i++) {
+			$('#quiz_questions').append('<p>' + quiz_questions[i][0]);
+			for (j = 1; j < quiz_questions[i].length; j++) {
+				$('#quiz_questions').append(
+					'<input type="' + input_type + '" ' +
+					'name="question' + i + '" ' +
+					'value="a' + j + '">' +
+					quiz_questions[i][j] + '<br/>');
+			}
 		}
-		$('#quiz_questions').append('</p>');
-		$('#quiz_questions').append('</div><br/>');
+	}
+
+	if (input_type == 'text') {
+		$('#quiz_questions').append(
+			'<p><textarea></textarea></p>'
+		)
 	}
 
 }

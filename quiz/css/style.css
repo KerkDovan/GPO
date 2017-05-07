@@ -6,6 +6,12 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+textarea {
+    width: 90%;
+    height: 400px;
+    resize: none;
+   } 
+
 #quiz {
 	background-color: #fff;
 	margin: auto;
@@ -23,4 +29,21 @@ body {
 
 #quiz_desc {
 	font-size: 24px;
+}
+
+.button {
+	background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	border-radius: 8px;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
