@@ -101,3 +101,7 @@ https://stackoverflow.com/questions/31564432/websocket-security
 
 ### Content Delivery Network (CDN)
 http://www.growthengineering.co.uk/content-delivery-network-cdn/  
+
+### Безопасный для пользователя JavaScript
+https://security.stackexchange.com/questions/9779/how-to-scan-javascript-for-malicious-code  
+https://developers.google.com/caja/  
